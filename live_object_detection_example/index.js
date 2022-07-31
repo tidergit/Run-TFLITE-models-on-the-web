@@ -44,7 +44,7 @@ function enableCam(event) {
 var model = undefined;
 
 tflite.ObjectDetector.create(
-  "https://tfhub.dev/tensorflow/lite-model/ssd_mobilenet_v1/1/metadata/2?lite-format=tflite"
+  "https://tfhub.dev/google/lite-model/object_detection/mobile_object_localizer_v1/1/metadata/2?lite-format=tflite"
 ).then((loadedModel) => {
   model = loadedModel;
   // Show demo section now model is ready to use.
@@ -66,7 +66,7 @@ function predictWebcam() {
   // they have a high confidence score.
   for (let i = 0; i < predictions.length; i++) {
     const curObject = predictions[i];
-    if (curObject.classes[0].probability > 0.5) {
+    if (curObject.classes[0].probability > 0.3) {
       const p = document.createElement("p");
       p.innerText =
         curObject.classes[0].className +
